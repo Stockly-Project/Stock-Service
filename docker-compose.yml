@@ -17,9 +17,9 @@ services:
   stockDB:
     image: mysql:latest
     ports:
-      - "3305:3306"
+      - "3307:3307"
     env_file:
-      - .env
+      - .env  # 동일한 환경 변수 파일을 사용
     volumes:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -29,7 +29,8 @@ services:
 
 networks:
   app-network:
-    driver: bridge
+    external: true
 
 volumes:
   db_data:
+
